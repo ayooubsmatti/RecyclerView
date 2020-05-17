@@ -1,6 +1,7 @@
 package Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ayoubsmatti.recyclerview.InfoActivity;
 import com.ayoubsmatti.recyclerview.R;
 
 import java.util.List;
@@ -58,7 +60,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public void onClick(View v) {
             int position = getAdapterPosition();
             Listitem item = listitems.get(position);
-            Toast.makeText(context,item.getName(),Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(context, InfoActivity.class);
+            intent.putExtra("name",item.getName());
+            intent.putExtra("description",item.getDescription());
+            context.startActivity(intent);
         }
     }
 }
